@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: pos-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        value: "my_super_secret_pos_key_2026"
+      - key: PORT
+        value: "5000"
