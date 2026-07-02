@@ -30,6 +30,15 @@ app.use(express.json());
 // Auth Routes (Public)
 app.use("/api/auth", authRoutes);
 
+app.get("/api/seed", async (req, res) => {
+  try {
+    await seedUsers();
+    res.send("Database seeded successfully! You can now log in.");
+  } catch (err) {
+    res.status(500).send("Error seeding database: " + err.message);
+  }
+});
+
 // Protected Routes
 app.use("/api/customers", protect, customerRoutes);
 app.use("/api/invoices", protect, invoiceRoutes);
