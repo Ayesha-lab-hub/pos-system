@@ -18,8 +18,13 @@ import invoiceRoutes from "./routes/invoiceRoutes.js";
 import { seedUsers } from "./controllers/authController.js";
 import { protect } from "./middleware/authMiddleware.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __dirname = "";
+try {
+  const __filename = fileURLToPath(import.meta.url);
+  __dirname = path.dirname(__filename);
+} catch (e) {
+  // Netlify lambda environment
+}
 
 dotenv.config();
 const app = express();
