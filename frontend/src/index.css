@@ -1,0 +1,857 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  background: var(--bg-body, linear-gradient(160deg, #f8fafc 0%, #f1f5f9 100%));
+  color: var(--text-main, #1e293b);
+  min-height: 100vh;
+}
+
+html.dark {
+  --bg-body: #111827; /* Tailwind gray-900 */
+  --text-main: #f3f4f6; /* Tailwind gray-100 */
+  --bg-card: #1f2937; /* Tailwind gray-800 */
+  --border-card: #374151; /* Tailwind gray-700 */
+}
+
+/* Global Dark Mode Overrides for Tailwind Utility Classes */
+html.dark .bg-white { background-color: #1f2937 !important; }
+html.dark .bg-gray-50 { background-color: #111827 !important; }
+html.dark .bg-gray-100 { background-color: #374151 !important; }
+html.dark .text-gray-500,
+html.dark .text-gray-600,
+html.dark .text-gray-700,
+html.dark .text-gray-800,
+html.dark .text-gray-900,
+html.dark td {
+  color: #f3f4f6 !important;
+}
+html.dark th,
+html.dark td {
+  border-bottom-color: #374151 !important;
+}
+html.dark .border,
+html.dark .border-gray-200,
+html.dark .border-gray-300 {
+  border-color: #4b5563 !important;
+}
+html.dark input,
+html.dark select {
+  background-color: #374151 !important;
+  color: #f3f4f6 !important;
+  border-color: #4b5563 !important;
+}
+
+.app {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* ---------- HEADER ---------- */
+.app-header {
+  text-align: center;
+  background: linear-gradient(120deg, #ff7e5f, #feb47b 35%, #ffd166 70%, #06d6a0);
+  border-radius: 18px;
+  padding: 28px 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(255, 126, 95, 0.25);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 32px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.app-tagline {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ---------- TABS ---------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.tab {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #444;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+.tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.tab.active {
+  background: linear-gradient(120deg, #06d6a0, #1b9aaa);
+  color: white;
+  box-shadow: 0 6px 16px rgba(6, 214, 160, 0.4);
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background: var(--bg-card, white);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border-card, rgba(0, 0, 0, 0.04));
+  animation: fadeIn 0.25s ease;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1b9aaa;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- GATE / ARRIVALS BANNER ---------- */
+.gate-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(120deg, #ffd166, #ff7e5f);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 24px rgba(255, 126, 95, 0.3);
+}
+
+.gate-title {
+  margin: 0 0 4px;
+  color: white;
+  font-size: 22px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.gate-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  max-width: 480px;
+}
+
+.add-arrival-btn {
+  background: white;
+  color: #ff7e5f;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.add-arrival-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- FORMS ---------- */
+form label {
+  display: block;
+  margin-bottom: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+form input,
+form select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.15s ease;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #06d6a0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+button[type='submit'] {
+  background: linear-gradient(120deg, #06d6a0, #1b9aaa);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 8px;
+  box-shadow: 0 6px 16px rgba(6, 214, 160, 0.35);
+  transition: transform 0.15s ease;
+}
+
+button[type='submit']:hover {
+  transform: translateY(-1px);
+}
+
+.small-btn {
+  background: #1b9aaa;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- TABLES ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+th {
+  background: var(--th-bg, #f4fbf6);
+  color: #1b9aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+html.dark th {
+  --th-bg: #374151;
+}
+
+tbody tr:hover {
+  background: var(--tr-hover, #fbfdf8);
+}
+
+html.dark tbody tr:hover {
+  --tr-hover: #4b5563;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 24px;
+}
+
+.sold-out {
+  color: #ef476f;
+  font-weight: bold;
+}
+
+.paid {
+  color: #06d6a0;
+  font-weight: bold;
+}
+
+.pending {
+  color: #ef476f;
+  font-weight: bold;
+}
+
+.hint {
+  font-size: 13px;
+  color: #777;
+  margin: -8px 0 14px 0;
+}
+
+/* ---------- SALE RECEIPT ---------- */
+.totals-preview {
+  background: linear-gradient(120deg, #f0fbf0, #fff8e7);
+  border: 1px solid #cdeccd;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+.totals-preview div {
+  margin-bottom: 5px;
+}
+
+.receipt-box {
+  margin-top: 18px;
+  padding: 14px;
+  background: #fffbe6;
+  border: 1.5px dashed #ffc94a;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ---------- DASHBOARD ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.stat-box {
+  background: linear-gradient(135deg, #f0fbf0, #ffffff);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+  border: 1px solid #eef6ee;
+  transition: transform 0.15s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(120deg, #06d6a0, #1b9aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* ---------- MODAL POPUP ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: linear-gradient(120deg, #06d6a0, #1b9aaa);
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 18px;
+}
+
+.modal-close {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.vehicle-form {
+  margin: 0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .app-header h1 {
+    font-size: 24px;
+  }
+  table {
+    font-size: 12px;
+  }
+}
+
+/* ========== KHATTA CARDS (Customer & Supplier) ========== */
+
+.khatta-card {
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  animation: fadeIn 0.2s ease;
+}
+
+.khatta-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  cursor: pointer;
+  background: linear-gradient(120deg, #f8fff8, #fff8f0);
+  transition: background 0.15s ease;
+}
+
+.khatta-summary:hover {
+  background: linear-gradient(120deg, #edfaed, #fff3e0);
+}
+
+.khatta-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.khatta-toggle {
+  font-size: 11px;
+  color: #888;
+}
+
+.cname {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.cid {
+  font-size: 12px;
+  color: #888;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.khatta-totals {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ktag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.paid-tag {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.pending-tag {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.grand-tag {
+  background: #e0f2fe;
+  color: #0c4a6e;
+}
+
+/* ---- print button ---- */
+.print-btn {
+  background: linear-gradient(120deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(99,102,241,0.35);
+  transition: transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.print-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ---- expanded detail area ---- */
+.khatta-detail {
+  padding: 0 18px 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.bill-section {
+  margin-top: 14px;
+}
+
+.bill-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.pending-title {
+  background: #fff1f1;
+  color: #b91c1c;
+}
+
+.paid-title {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.unpaid-row td {
+  background: #fff9f9;
+}
+
+.paid-row td {
+  background: #f9fff9;
+  color: #555;
+}
+
+.section-total {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 8px;
+  margin-top: 4px;
+  border-top: 1px dashed #ddd;
+}
+
+.pending-total { color: #b91c1c; }
+.paid-total    { color: #166534; }
+
+.grand-total-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 800;
+  background: linear-gradient(120deg, #1b9aaa22, #06d6a022);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  color: #1b4332;
+  border: 1px solid #06d6a044;
+}
+
+/* ---- pay now button inside table ---- */
+.pay-now-btn {
+  background: #06d6a0;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.pay-now-btn:hover {
+  background: #059669;
+}
+
+/* ---- error card ---- */
+.error-card {
+  border-left: 4px solid #ef476f;
+}
+
+/* ---- khatta header card ---- */
+.khatta-header {
+  background: linear-gradient(120deg, #fff8e7, #f0fdf4);
+}
+
+/* ---------- CUSTOMER / SUPPLIER KHATTA DETAIL ---------- */
+.khatta-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.khatta-detail-header h2 {
+  margin: 0 0 4px;
+}
+
+.print-btn {
+  background: linear-gradient(120deg, #ff7e5f, #feb47b);
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 126, 95, 0.35);
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+
+.print-btn:hover {
+  transform: scale(1.04);
+}
+
+.khatta-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.khatta-stat {
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+
+.khatta-stat.total-box  { background: linear-gradient(135deg, #e8f4fd, #d0eaff); }
+.khatta-stat.paid-box   { background: linear-gradient(135deg, #e8fdf0, #c8f5dc); }
+.khatta-stat.pending-box{ background: linear-gradient(135deg, #fff0f0, #ffe0e0); }
+
+.ks-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1b2a1b;
+}
+
+.ks-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* filter tabs inside khatta detail */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ftab {
+  padding: 7px 16px;
+  border: 1.5px solid #ddd;
+  border-radius: 20px;
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ftab.active {
+  background: linear-gradient(120deg, #06d6a0, #1b9aaa);
+  color: white;
+  border-color: transparent;
+}
+
+/* highlight pending rows in the khatta table */
+.pending-row-hl {
+  background: #fff8f8 !important;
+}
+
+.selected-row {
+  background: #f0fdf4 !important;
+}
+
+.small-btn.green {
+  background: #06d6a0;
+}
+
+/* ---------- QUARTER-A4 PRINT RECEIPT (105mm × 148mm = A6) ---------- */
+/* Everything below only runs when the user hits Print */
+@media print {
+  /* Hide the entire app UI — only show the receipt */
+  body > * {
+    display: none !important;
+  }
+
+  #customer-receipt-print,
+  #supplier-receipt-print {
+    display: block !important;
+  }
+
+  @page {
+    size: 105mm 148mm; /* A6 = quarter of A4 */
+    margin: 4mm;
+  }
+
+  .receipt-print-page {
+    width: 97mm;
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    color: #000;
+  }
+
+  .rp-title {
+    text-align: center;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+
+  .rp-subtitle {
+    text-align: center;
+    font-size: 9pt;
+    margin-bottom: 4px;
+    color: #333;
+  }
+
+  .rp-line {
+    border-top: 1px dashed #000;
+    margin: 4px 0;
+  }
+
+  .rp-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 0;
+    font-size: 9pt;
+  }
+
+  .rp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4px 0;
+    font-size: 8pt;
+  }
+
+  .rp-table th,
+  .rp-table td {
+    border: none;
+    padding: 2px 3px;
+    text-align: left;
+  }
+
+  .rp-table th {
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    background: none !important;
+  }
+
+  .rp-totals {
+    margin: 4px 0;
+  }
+
+  .rp-footer {
+    text-align: center;
+    font-size: 8pt;
+    margin-top: 6px;
+    color: #555;
+  }
+
+  .paid-row strong  { color: #006600; }
+  .pending-row strong { color: #cc0000; }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+@layer utilities {
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out forwards;
+  }
+}
