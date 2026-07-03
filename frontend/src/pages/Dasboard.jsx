@@ -42,11 +42,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '16px' }}>
-        <Link to="/supplier" className="add-arrival-btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+      <div className="flex flex-col sm:flex-row gap-4 w-full mt-4">
+        <Link to="/supplier" className="add-arrival-btn flex-1 flex justify-center items-center gap-2 text-decoration-none">
           <IoMdAdd /> Add Supplier
         </Link>
-        <Link to="/customer" className="add-arrival-btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', background: 'linear-gradient(120deg, #06d6a0, #1b9aaa)', color: 'white' }}>
+        <Link to="/customer" className="add-arrival-btn flex-1 flex justify-center items-center gap-2 text-decoration-none text-white bg-gradient-to-r from-emerald-400 to-teal-500 border-none">
           <IoMdAdd /> Add Customer
         </Link>
       </div>

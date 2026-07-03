@@ -90,26 +90,25 @@ const Supplier = () => {
   );
 
   return (
-    <div className='w-full'>
-      <div className='w-full h-[90vh] flex items-center justify-center'>
-        <div className='w-full md:w-[90%] h-[70vh]'>
+    <div className='w-full p-4 md:p-6'>
+      <div className='w-full mx-auto max-w-7xl'>
 
           {/* Stats + Buttons */}
-          <div className='flex items-center gap-20 justify-between'>
-            <div className="bg-white flex-2 shadow-md rounded-lg p-6 border-l-4 border-blue-500">
+          <div className='flex flex-col md:flex-row justify-between items-center bg-white shadow-md rounded-lg p-6 w-full max-w-4xl gap-4'>
+            <div className="text-center">
               <h2 className="text-lg font-semibold text-gray-600">Total Suppliers</h2>
               <p className="text-3xl font-bold text-blue-600">{suppliers.length}</p>
             </div>
 
-            <div className='flex items-center justify-center gap-6 flex-2'>
-              <Link className='flex items-center rounded-lg gap-4 justify-center px-4 py-2 bg-blue-400 text-white' to="/supplier-invoice">
+            <div className='flex flex-col sm:flex-row items-center justify-center gap-4 flex-2 w-full md:w-auto'>
+              <Link className='flex items-center rounded-lg gap-4 justify-center px-4 py-2 bg-blue-400 text-white w-full sm:w-auto' to="/supplier-invoice">
                 <button>Make Invoice</button>
                 <LiaFileInvoiceSolid className='text-xl' />
               </Link>
 
               <div
                 onClick={openAddModal}
-                className='flex items-center gap-4 justify-center rounded-lg px-4 py-2 bg-green-400 text-white cursor-pointer'
+                className='flex items-center gap-4 justify-center rounded-lg px-4 py-2 bg-green-400 text-white cursor-pointer w-full sm:w-auto'
               >
                 <button>Add Supplier</button>
                 <IoMdAdd className='text-xl' />
@@ -206,7 +205,6 @@ const Supplier = () => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

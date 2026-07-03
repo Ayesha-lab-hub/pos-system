@@ -90,9 +90,8 @@ const NewArrivals = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="w-full h-[90vh] flex items-center justify-center">
-        <div className="w-full md:w-[90%] h-[70vh]">
+    <div className="w-full p-4 md:p-6">
+      <div className="w-full mx-auto max-w-7xl">
           <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 overflow-x-auto mt-6">
             <div className="flex items-center justify-between mb-8 w-full gap-6">
               <div className="relative w-full max-w-md">
@@ -166,7 +165,6 @@ const NewArrivals = () => {
               </table>
             </div>
           </div>
-        </div>
       </div>
 
       <PopupArrivalForm isOpen={isPopupOpen} onClose={closePopup} editData={editData} onArrivalAdded={handleArrivalAdded} />
