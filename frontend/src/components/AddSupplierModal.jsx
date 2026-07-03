@@ -47,7 +47,7 @@ const AddSupplierModal = ({ isOpen, onClose, onSave, initialData = null }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg w-[400px]">
+      <div className="bg-white p-6 rounded-lg w-full max-w-[400px]">
         <h2 className="text-lg font-bold mb-4">{initialData ? "Edit Supplier" : "Add Supplier"}</h2>
 
         {error && (

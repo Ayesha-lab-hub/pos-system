@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 p-8 shadow-lg rounded-xl border border-gray-200 dark:border-gray-700">
+      <div className="w-full max-w-md w-full bg-white dark:bg-gray-800 p-8 shadow-lg rounded-xl border border-gray-200 dark:border-gray-700">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 mb-2">Zameendara</h1>
           <h2 className="text-xl font-medium text-gray-600 dark:text-gray-300">POS Login</h2>

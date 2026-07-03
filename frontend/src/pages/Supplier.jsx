@@ -92,7 +92,7 @@ const Supplier = () => {
   return (
     <div className='w-full'>
       <div className='w-full h-[90vh] flex items-center justify-center'>
-        <div className='w-[90%] h-[70vh]'>
+        <div className='w-full md:w-[90%] h-[70vh]'>
 
           {/* Stats + Buttons */}
           <div className='flex items-center gap-20 justify-between'>

@@ -43,7 +43,7 @@ const SendAmountModal = ({ isOpen, onClose, suppliers, onSend }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-end md:items-center justify-center z-50">
-      <div className="bg-white rounded-t-lg md:rounded-lg p-6 w-full max-w-md transform transition-transform duration-300" style={{ animation: 'slideUp 0.3s ease forwards' }}>
+      <div className="bg-white rounded-t-lg md:rounded-lg p-6 w-full max-w-md w-full transform transition-transform duration-300" style={{ animation: 'slideUp 0.3s ease forwards' }}>
         <h2 className="text-xl font-bold mb-4 text-center">Send Amount</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <select value={selectedSupplierId} onChange={(e) => setSelectedSupplierId(e.target.value)} className="border p-2 rounded" required>
@@ -271,7 +271,7 @@ const SupplierInvoice = () => {
 
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 overflow-x-auto mt-8 w-full">
           <div className="flex items-center justify-between mb-8 w-full gap-4">
-            <div className="relative w-[60%]">
+            <div className="relative w-full md:w-[60%]">
               <input
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white transition-all shadow-sm text-sm"
                 type="text"

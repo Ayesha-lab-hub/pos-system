@@ -86,7 +86,7 @@ const SendAmountModal = ({ isOpen, onClose, suppliers, onSend }) => {
     >
       <div
         ref={modalRef}
-        className="bg-white rounded-t-lg md:rounded-lg p-6 w-full max-w-md
+        className="bg-white rounded-t-lg md:rounded-lg p-6 w-full max-w-md w-full
                    transform transition-transform duration-300 md:translate-y-0"
         style={{ animation: "slideUp 0.3s ease forwards" }}
       >

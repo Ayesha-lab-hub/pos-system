@@ -92,7 +92,7 @@ const NewArrivals = () => {
   return (
     <div className="w-full">
       <div className="w-full h-[90vh] flex items-center justify-center">
-        <div className="w-[90%] h-[70vh]">
+        <div className="w-full md:w-[90%] h-[70vh]">
           <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 overflow-x-auto mt-6">
             <div className="flex items-center justify-between mb-8 w-full gap-6">
               <div className="relative w-full max-w-md">
@@ -120,49 +120,51 @@ const NewArrivals = () => {
               <span className="w-2 h-6 bg-blue-500 rounded-full inline-block"></span>
               Today's Arrivals
             </h2>
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
-                  <th className="py-3 px-4 font-semibold">Sup.Id</th>
-                  <th className="py-3 px-4 font-semibold">Sup.Name</th>
-                  <th className="py-3 px-4 font-semibold">Vehicle No.</th>
-                  <th className="py-3 px-4 font-semibold">Item</th>
-                  <th className="py-3 px-4 font-semibold">No Of Items</th>
-                  <th className="py-3 px-4 font-semibold">Date</th>
-                  <th className="py-3 px-4 font-semibold text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm text-slate-700">
-                {arrivals.length === 0 ? (
-                  <tr>
-                    <td colSpan="7" className="text-center py-4">
-                      No arrivals found.
-                    </td>
+            <div className="overflow-x-auto w-full">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
+                    <th className="py-3 px-4 font-semibold">Sup.Id</th>
+                    <th className="py-3 px-4 font-semibold">Sup.Name</th>
+                    <th className="py-3 px-4 font-semibold">Vehicle No.</th>
+                    <th className="py-3 px-4 font-semibold">Item</th>
+                    <th className="py-3 px-4 font-semibold">No Of Items</th>
+                    <th className="py-3 px-4 font-semibold">Date</th>
+                    <th className="py-3 px-4 font-semibold text-center">Actions</th>
                   </tr>
-                ) : (
-                  arrivals.map((arrival) => (
-                    <tr key={arrival._id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
-                      <td className="py-3 px-4 font-medium text-slate-900">{arrival.supplierId?.supplierId || "-"}</td>
-                      <td className="py-3 px-4">{arrival.supplierId?.name || "-"}</td>
-                      <td className="py-3 px-4 text-slate-500 font-mono">{arrival.vehicleNumber}</td>
-                      <td className="py-3 px-4">{arrival.fruitName}</td>
-                      <td className="py-3 px-4 font-medium text-emerald-600">{arrival.quantity}</td>
-                      <td className="py-3 px-4 text-slate-500">{new Date(arrival.createdAt).toLocaleDateString()}</td>
-                      <td className="py-3 px-4">
-                        <div className="flex items-center justify-center gap-3">
-                          <button className="p-2 bg-emerald-50 text-emerald-600 rounded-full hover:bg-emerald-600 hover:text-white transition-colors" title="Edit" onClick={() => openPopup(arrival)}>
-                            <FaEdit />
-                          </button>
-                          <button className="p-2 bg-rose-50 text-rose-600 rounded-full hover:bg-rose-600 hover:text-white transition-colors" title="Delete" onClick={() => handleDelete(arrival._id)}>
-                            <FaTrash />
-                          </button>
-                        </div>
+                </thead>
+                <tbody className="text-sm text-slate-700">
+                  {arrivals.length === 0 ? (
+                    <tr>
+                      <td colSpan="7" className="text-center py-4">
+                        No arrivals found.
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ) : (
+                    arrivals.map((arrival) => (
+                      <tr key={arrival._id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                        <td className="py-3 px-4 font-medium text-slate-900">{arrival.supplierId?.supplierId || "-"}</td>
+                        <td className="py-3 px-4">{arrival.supplierId?.name || "-"}</td>
+                        <td className="py-3 px-4 text-slate-500 font-mono">{arrival.vehicleNumber}</td>
+                        <td className="py-3 px-4">{arrival.fruitName}</td>
+                        <td className="py-3 px-4 font-medium text-emerald-600">{arrival.quantity}</td>
+                        <td className="py-3 px-4 text-slate-500">{new Date(arrival.createdAt).toLocaleDateString()}</td>
+                        <td className="py-3 px-4">
+                          <div className="flex items-center justify-center gap-3">
+                            <button className="p-2 bg-emerald-50 text-emerald-600 rounded-full hover:bg-emerald-600 hover:text-white transition-colors" title="Edit" onClick={() => openPopup(arrival)}>
+                              <FaEdit />
+                            </button>
+                            <button className="p-2 bg-rose-50 text-rose-600 rounded-full hover:bg-rose-600 hover:text-white transition-colors" title="Delete" onClick={() => handleDelete(arrival._id)}>
+                              <FaTrash />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

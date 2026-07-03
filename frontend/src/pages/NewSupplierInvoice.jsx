@@ -179,7 +179,7 @@ const NewSupplierInvoice = () => {
             {/* Screen UI - Hidden when printing */}
             <div className='w-full p-6 print:hidden'>
                 <div className='w-full flex items-center justify-center gap-10'>
-                <div className='w-[50%] rounded-2xl bg-white p-8 border-t-4 border-blue-700'>
+                <div className='w-full md:w-1/2 rounded-2xl bg-white p-8 border-t-4 border-blue-700'>
                     <form>
                         <h1 className='mb-4'>Details</h1>
                         <hr className='mb-8' />
@@ -215,7 +215,7 @@ const NewSupplierInvoice = () => {
                         </div>
                     </form>
                 </div>
-                <div className='w-[50%] rounded-2xl bg-white p-8 border-t-4 border-red-400'>
+                <div className='w-full md:w-1/2 rounded-2xl bg-white p-8 border-t-4 border-red-400'>
                     <form>
                         <h1 className='mb-4'>Expence Detail</h1>
                         <hr className='mb-4' />
@@ -279,7 +279,7 @@ const NewSupplierInvoice = () => {
 
                     <div className='w-full flex flex-col items-center justify-between'>
                         <label className="block mb-2 text-blue-600 font-medium">Gross Amount (Amount - Expenses):</label>
-                        <button type="button" className='w-[70%] text-[24px] font-bold border border-gray-400 text-blue-600 bg-blue-50 focus:outline-none p-2'>{grossAmount}</button>
+                        <button type="button" className='w-full md:w-[70%] text-[24px] font-bold border border-gray-400 text-blue-600 bg-blue-50 focus:outline-none p-2'>{grossAmount}</button>
                     </div>
                     <div className='flex items-center gap-6 mt-5 justify-center'>
                         <button type="button" onClick={() => handleSave(true)} className='px-10 rounded-lg text-white py-2 bg-green-400'>Save/Print</button>

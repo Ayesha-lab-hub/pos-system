@@ -147,7 +147,7 @@ const PopupModal = ({ isOpen, onClose, onSaved, arrivalData }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-40 backdrop-blur-sm z-50">
       <div
-        className={`bg-white p-6 rounded-lg w-[90%] max-w-md shadow-lg transform transition-all duration-500 ease-out ${
+        className={`bg-white p-6 rounded-lg w-[90%] max-w-md w-full shadow-lg transform transition-all duration-500 ease-out ${
           showAnimation
             ? "translate-y-0 opacity-100"
             : "translate-y-full opacity-0"

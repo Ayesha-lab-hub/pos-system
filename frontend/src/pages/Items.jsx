@@ -112,7 +112,7 @@ const Items = () => {
 
       {/* Header */}
       <div className='flex items-center justify-between'>
-        <div className="bg-white w-[300px] shadow-md rounded-lg p-6 border-l-4 border-blue-500">
+        <div className="bg-white w-full max-w-[300px] shadow-md rounded-lg p-6 border-l-4 border-blue-500">
           <h2 className="text-lg font-semibold text-gray-600">Total Items</h2>
           <p className="text-3xl font-bold text-blue-600">{items.length}</p>
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
@@ -18,7 +18,7 @@ const TABS = [
   { key: '/users', label: 'Users', icon: '👥', adminOnly: true }
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -31,8 +31,20 @@ const Sidebar = () => {
     return location.pathname === path;
   };
 
+  useEffect(() => {
+    setCollapsed(true);
+    if (setIsMobileOpen) setIsMobileOpen(false);
+  }, [location.pathname, setIsMobileOpen]);
+
   return (
-    <div className={`flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ${collapsed ? 'w-20' : 'w-64'} min-h-screen z-20 shadow-md sticky top-0 h-screen`}>
+    <>
+      {isMobileOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+      <div className={`fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${collapsed ? 'w-64 md:w-20' : 'w-64'} shadow-md`}>
       <div className="p-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
         {!collapsed && <span className="font-bold text-lg whitespace-nowrap overflow-hidden text-orange-500">ZFC POS</span>}
         <button 
@@ -121,6 +133,7 @@ const Sidebar = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

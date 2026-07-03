@@ -45,7 +45,7 @@ const ItemModal = ({ visible, onClose, onSubmit, initialData = null }) => {
       {/* Transparent + Blur Overlay */}
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-transparent backdrop-blur-sm">
         <div
-          className="bg-white w-full max-w-md rounded-lg p-6 shadow-lg"
+          className="bg-white w-full max-w-md w-full rounded-lg p-6 shadow-lg"
           style={{
             animation: 'slideUp 0.3s ease-out forwards',
           }}

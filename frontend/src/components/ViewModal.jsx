@@ -5,7 +5,7 @@ const ViewModal = ({ isOpen, onClose, title, data }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-40 backdrop-blur-sm z-50">
-      <div className="bg-white p-6 rounded-lg w-[90%] max-w-md shadow-lg transform transition-all duration-300">
+      <div className="bg-white p-6 rounded-lg w-[90%] max-w-md w-full shadow-lg transform transition-all duration-300">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-blue-600">{title} Details</h2>
           <button
@@ -27,7 +27,7 @@ const ViewModal = ({ isOpen, onClose, title, data }) => {
                 <span className="font-semibold text-gray-700 capitalize">
                   {key.replace(/([A-Z])/g, " $1").trim()}:
                 </span>
-                <span className="text-gray-600 text-right break-words max-w-[60%]">
+                <span className="text-gray-600 text-right break-words max-w-full md:w-[60%]">
                   {value?.toString() || "N/A"}
                 </span>
               </div>

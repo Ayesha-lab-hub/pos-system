@@ -194,7 +194,7 @@ const CustomerInvoice = () => {
     <div className="w-full">
       {/* Dashboard */}
       <div className="w-full h-[90vh] flex items-center justify-center">
-        <div className="w-[90%] h-[70vh]">
+        <div className="w-full md:w-[90%] h-[70vh]">
           <div className="flex items-center gap-8 justify-between mb-8">
             <div className="w-full bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow rounded-2xl p-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-blue-50 opacity-80"></div>
@@ -227,7 +227,7 @@ const CustomerInvoice = () => {
                 <input
                   type="text"
                   placeholder="Search by Name or Supplier ID..."
-                  className="w-full max-w-md pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all shadow-sm text-sm"
+                  className="w-full max-w-md w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all shadow-sm text-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -429,7 +429,7 @@ const CustomerInvoice = () => {
       {/* ✅ Edit Modal */}
       {editingInvoice && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white w-[400px] p-6 rounded-lg shadow-lg">
+          <div className="bg-white w-full max-w-[400px] p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold mb-4">Edit Invoice {editingInvoice.invoiceNumber}</h2>
             <form onSubmit={handleEditSubmit} className="flex flex-col gap-4">
               <div>
@@ -456,7 +456,7 @@ const CustomerInvoice = () => {
       {/* ✅ Print Modal */}
       {printInvoice && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white w-[800px] p-6 rounded-lg shadow-lg" id="print-area">
+          <div className="bg-white w-full max-w-[800px] p-6 rounded-lg shadow-lg" id="print-area">
             <h2 className="text-2xl font-bold mb-2">Invoice Details</h2>
             <p>
               <strong>Customer ID:</strong>{" "}
