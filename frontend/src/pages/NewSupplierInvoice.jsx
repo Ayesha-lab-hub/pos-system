@@ -190,6 +190,7 @@ const NewSupplierInvoice = () => {
                                 placeholder="Search or select a name"
                                 onChange={(opt) => setFormData(prev => ({ ...prev, supplierId: opt.value }))}
                                 isSearchable
+                                classNamePrefix="react-select"
                             />
                             <div className='mt-4'>
                                 <label className="block mb-2 font-medium">Select Vehicle num:</label>
@@ -201,6 +202,7 @@ const NewSupplierInvoice = () => {
                                 placeholder="Search or select Item"
                                 onChange={(opt) => setFormData(prev => ({ ...prev, itemId: opt.value }))}
                                 isSearchable
+                                classNamePrefix="react-select"
                             />
                             <div className='mt-4'>
                                 <label className="block mb-2 font-medium">No of Items:</label>

@@ -129,6 +129,7 @@ const PopupArrivalForm = ({ isOpen, onClose, onArrivalAdded, editData }) => {
             filterOption={supplierFilter}
             styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
             menuPortalTarget={document.body}
+            classNamePrefix="react-select"
           />
 
           <input
@@ -153,6 +154,7 @@ const PopupArrivalForm = ({ isOpen, onClose, onArrivalAdded, editData }) => {
             filterOption={fruitFilter}
             styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
             menuPortalTarget={document.body}
+            classNamePrefix="react-select"
           />
 
           <input

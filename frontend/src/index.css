@@ -936,3 +936,58 @@ html.dark tbody tr:hover {
     animation: slide-up 0.3s ease-out forwards;
   }
 }
+
+/* React Select Styles for Light and Dark Modes */
+.react-select__control {
+  background-color: white !important;
+  border-color: #e0e0e0 !important;
+}
+html.dark .react-select__control {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.react-select__single-value,
+.react-select__input-container,
+.react-select__placeholder {
+  color: #333 !important;
+}
+html.dark .react-select__single-value,
+html.dark .react-select__input-container,
+html.dark .react-select__placeholder {
+  color: #f3f4f6 !important;
+}
+
+.react-select__menu {
+  background-color: white !important;
+}
+html.dark .react-select__menu {
+  background-color: #1f2937 !important;
+  border: 1px solid #4b5563 !important;
+}
+
+.react-select__option {
+  background-color: transparent;
+  color: #333 !important;
+}
+html.dark .react-select__option {
+  color: #f3f4f6 !important;
+}
+
+.react-select__option--is-focused {
+  background-color: #f0f0f0 !important;
+  color: #333 !important;
+}
+html.dark .react-select__option--is-focused {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+.react-select__option--is-selected {
+  background-color: #2563eb !important; /* Tailwind blue-600 */
+  color: white !important;
+}
+html.dark .react-select__option--is-selected {
+  background-color: #3b82f6 !important; /* Tailwind blue-500 */
+  color: white !important;
+}

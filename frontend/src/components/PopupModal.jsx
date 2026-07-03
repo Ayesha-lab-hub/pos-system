@@ -187,6 +187,7 @@ const PopupModal = ({ isOpen, onClose, onSaved, arrivalData }) => {
             onChange={handleCustomerSelect}
             placeholder="Search Customer"
             isSearchable
+            classNamePrefix="react-select"
           />
 
           <input
@@ -217,6 +218,7 @@ const PopupModal = ({ isOpen, onClose, onSaved, arrivalData }) => {
             onChange={handleItemSelect}
             placeholder="Search Item"
             isSearchable
+            classNamePrefix="react-select"
           />
 
           <input
