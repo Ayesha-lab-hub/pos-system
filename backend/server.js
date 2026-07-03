@@ -18,12 +18,13 @@ import invoiceRoutes from "./routes/invoiceRoutes.js";
 import { seedUsers } from "./controllers/authController.js";
 import { protect } from "./middleware/authMiddleware.js";
 
+let isLambda = false;
 let __dirname = "";
 try {
   const __filename = fileURLToPath(import.meta.url);
   __dirname = path.dirname(__filename);
 } catch (e) {
-  // Netlify lambda environment
+  isLambda = true;
 }
 
 dotenv.config();
@@ -55,20 +56,29 @@ app.use("/api/items", protect, itemRoutes);
 app.use("/api", protect, invoicenumRoutes);  
 app.use("/api/save-invoice", protect, saveInvoiceRoutes);
 
-// Serve Frontend Build
-const frontendDistPath = path.join(__dirname, "../frontend/dist");
-app.use(express.static(frontendDistPath));
+if (!isLambda) {
+  // Serve Frontend Build only for local/custom hosting, not needed for Netlify Functions
+  const frontendDistPath = path.join(__dirname, "../frontend/dist");
+  app.use(express.static(frontendDistPath));
 
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(frontendDistPath, "index.html"));
-});
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+}
 
 // DB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log(" MongoDB Connected"))
-  .catch(err => console.log(" DB Connection Error:", err));
+export const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log(" MongoDB Connected");
+  } catch (err) {
+    console.log(" DB Connection Error:", err);
+  }
+};
 
-if (!process.env.NETLIFY) {
+if (!isLambda) {
+  connectDB();
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, async () => {
     console.log(`🚀 Server running on port ${PORT}`);
