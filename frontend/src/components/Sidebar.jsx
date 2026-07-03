@@ -42,11 +42,11 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
     <>
       {isMobileOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-[50] md:hidden"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
-      <div className={`fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${isEffectivelyCollapsed ? 'w-64 md:w-20' : 'w-64'} shadow-md`}>
+      <div className={`fixed md:sticky top-0 left-0 h-screen z-[60] flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${isEffectivelyCollapsed ? 'w-64 md:w-20' : 'w-64'} shadow-md`}>
       <div className="p-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
         {!isEffectivelyCollapsed && <span className="font-bold text-lg whitespace-nowrap overflow-hidden text-orange-500">ZFC POS</span>}
         <button 

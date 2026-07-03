@@ -299,26 +299,7 @@ const Reports = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </span>
           </div>
-        {/* View Mode Toggle */}
-        <div className="flex justify-center mb-6">
-          <div className="bg-white border border-gray-200 rounded-lg p-1 flex gap-1 shadow-sm">
-            <button
-              onClick={() => setViewMode('values')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md font-semibold transition-all ${viewMode === 'values' ? 'bg-indigo-500 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-100'}`}
-            >
-              <FaTable /> Values
-            </button>
-            <button
-              onClick={() => setViewMode('graphs')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md font-semibold transition-all ${viewMode === 'graphs' ? 'bg-indigo-500 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-100'}`}
-            >
-              <FaChartBar /> Graphs
-            </button>
-          </div>
-        </div>
-
-        {viewMode === 'values' ? (
-          <>
+          <div className="space-y-8">
             {/* Stat Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div className="bg-emerald-50 rounded-xl p-6 border-l-4 border-emerald-500 shadow-sm flex flex-col items-center">
@@ -336,6 +317,29 @@ const Reports = () => {
               <div className="bg-yellow-50 rounded-xl p-6 border-l-4 border-yellow-500 shadow-sm flex flex-col items-center">
                 <p className="text-yellow-700 font-bold uppercase tracking-wider text-xs mb-2">Paid Out (Sup)</p>
                 <p className="text-3xl font-extrabold text-yellow-600">Rs. {totalPaidOut.toLocaleString()}</p>
+              </div>
+            </div>
+
+            {/* Main Overview Bar Chart */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <h3 className="text-lg font-bold text-gray-800 mb-6">Financial Overview</h3>
+              <div className="h-[400px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={overviewData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                    <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `Rs ${value.toLocaleString()}`} />
+                    <RechartsTooltip cursor={{fill: 'transparent'}} formatter={(value) => `Rs ${value.toLocaleString()}`} />
+                    <Bar dataKey="amount" fill="#6366f1" radius={[4, 4, 0, 0]} barSize={60}>
+                      {
+                        overviewData.map((entry, index) => {
+                          const colors = ['#10b981', '#f43f5e', '#3b82f6', '#eab308'];
+                          return <Cell key={`cell-${index}`} fill={colors[index % 20]} />;
+                        })
+                      }
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
@@ -409,31 +413,6 @@ const Reports = () => {
                 </div>
               </div>
             </div>
-          </>
-        ) : (
-          <div className="space-y-8">
-            {/* Main Overview Bar Chart */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-6">Financial Overview</h3>
-              <div className="h-[400px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={overviewData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                    <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `Rs ${value.toLocaleString()}`} />
-                    <RechartsTooltip cursor={{fill: 'transparent'}} formatter={(value) => `Rs ${value.toLocaleString()}`} />
-                    <Bar dataKey="amount" fill="#6366f1" radius={[4, 4, 0, 0]} barSize={60}>
-                      {
-                        overviewData.map((entry, index) => {
-                          const colors = ['#10b981', '#f43f5e', '#3b82f6', '#eab308'];
-                          return <Cell key={`cell-${index}`} fill={colors[index % 20]} />;
-                        })
-                      }
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Top Customers Chart */}
@@ -469,7 +448,6 @@ const Reports = () => {
               </div>
             </div>
           </div>
-        )}
         </>
       )}
     </div>
