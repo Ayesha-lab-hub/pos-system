@@ -24,6 +24,7 @@ const Sidebar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   // Default to collapsed for a VS Code-like experience
   const [collapsed, setCollapsed] = useState(true);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const isActive = (path) => {
     if (path === '/') return location.pathname === '/' || location.pathname === '/dashboard';
@@ -83,7 +84,7 @@ const Sidebar = () => {
           </button>
           
           <button
-            onClick={logout}
+            onClick={() => setShowLogoutConfirm(true)}
             title="Logout"
             className="flex items-center justify-center text-white bg-red-500 hover:bg-red-600 p-2 rounded-lg shadow-sm font-bold transition-colors flex-1 w-full"
           >
@@ -92,6 +93,33 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 animate-slideUp">
+            <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Confirm Logout</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">Are you sure you want to log out of your account?</p>
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={() => setShowLogoutConfirm(false)}
+                className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setShowLogoutConfirm(false);
+                  logout();
+                }}
+                className="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-medium transition-colors"
+              >
+                Yes, Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

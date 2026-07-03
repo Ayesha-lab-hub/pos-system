@@ -161,7 +161,7 @@ export const saveInvoice = async (invoiceData) => {
 export const getUsers = async () => (await API.get('/auth/users')).data;
 export const createUser = async (userData) => (await API.post('/auth/users', userData)).data;
 export const deleteUser = async (id) => (await API.delete(`/auth/users/${id}`)).data;
-
+export const updatePassword = async (id, newPassword) => (await API.put(`/auth/users/${id}/password`, { newPassword })).data;
 // Invoices
 export const getInvoices = async (searchId = '') => {
   const { data } = await API.get("/save-invoice");

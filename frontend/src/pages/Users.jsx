@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getUsers, createUser, deleteUser } from "../services/api";
-import { FaTrash, FaUserPlus, FaUsers } from "react-icons/fa";
+import { getUsers, createUser, deleteUser, updatePassword } from "../services/api";
+import { FaTrash, FaUserPlus, FaUsers, FaKey } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const Users = () => {
@@ -10,6 +10,10 @@ const Users = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("EMPLOYEE");
+
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [selectedUserForPassword, setSelectedUserForPassword] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     fetchUsers();
@@ -53,6 +57,22 @@ const Users = () => {
       } catch (error) {
         toast.error("Failed to delete user");
       }
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (!newPassword) {
+      toast.error("Please enter a new password");
+      return;
+    }
+    try {
+      await updatePassword(selectedUserForPassword._id, newPassword);
+      toast.success("Password updated successfully");
+      setShowPasswordModal(false);
+      setNewPassword("");
+      setSelectedUserForPassword(null);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update password");
     }
   };
 
@@ -137,15 +157,28 @@ const Users = () => {
                       {new Date(u.createdAt).toLocaleDateString()}
                     </td>
                     <td className="p-3 text-center">
-                      {u.username !== 'admin' && (
+                      <div className="flex justify-center gap-2">
                         <button
-                          onClick={() => handleDeleteUser(u._id, u.username)}
-                          className="p-2 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white rounded-full transition-colors"
-                          title="Delete User"
+                          onClick={() => {
+                            setSelectedUserForPassword(u);
+                            setNewPassword("");
+                            setShowPasswordModal(true);
+                          }}
+                          className="p-2 bg-blue-50 text-blue-600 hover:bg-blue-500 hover:text-white rounded-full transition-colors"
+                          title="Change Password"
                         >
-                          <FaTrash />
+                          <FaKey />
                         </button>
-                      )}
+                        {u.username !== 'admin' && (
+                          <button
+                            onClick={() => handleDeleteUser(u._id, u.username)}
+                            className="p-2 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white rounded-full transition-colors"
+                            title="Delete User"
+                          >
+                            <FaTrash />
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -154,6 +187,40 @@ const Users = () => {
           </div>
         </div>
       </div>
+
+      {/* Password Reset Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 animate-slideUp">
+            <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Change Password</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Enter a new password for <strong>{selectedUserForPassword?.username}</strong>.
+            </p>
+            <input
+              type="text"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="New password..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-6 bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              autoFocus
+            />
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={() => setShowPasswordModal(false)}
+                className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleChangePassword}
+                className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+              >
+                Save Password
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
