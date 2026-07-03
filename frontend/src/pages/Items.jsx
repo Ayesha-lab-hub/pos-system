@@ -145,6 +145,7 @@ const Items = () => {
           </div>
         </div>
 
+        <div className="overflow-x-auto w-full">
         <table className="w-full text-left">
           <thead>
             <tr className="bg-gray-100">
@@ -193,6 +194,7 @@ const Items = () => {
             )}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Modal */}

@@ -236,6 +236,7 @@ const CustomerInvoice = () => {
                 </span>
               </div>
 
+              <div className="overflow-x-auto w-full">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
@@ -288,6 +289,7 @@ const CustomerInvoice = () => {
                   )}
                 </tbody>
               </table>
+              </div>
             </div>
           )}
 
@@ -329,6 +331,7 @@ const CustomerInvoice = () => {
             Loading customer invoices...
           </div>
         ) : (
+          <div className="overflow-x-auto w-full">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
@@ -423,6 +426,7 @@ const CustomerInvoice = () => {
               )}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 
@@ -481,6 +485,7 @@ const CustomerInvoice = () => {
               const grandTotal = subtotal + prevBalance;
 
               return (
+                <div className="overflow-x-auto w-full">
                 <table className="w-full mt-4 border">
                   <thead>
                     <tr className="bg-gray-100">
@@ -519,6 +524,7 @@ const CustomerInvoice = () => {
                     </tr>
                   </tbody>
                 </table>
+                </div>
               );
             })()}
 

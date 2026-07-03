@@ -204,6 +204,7 @@ const SupplierInvoice = () => {
               </span>
             </div>
           </div>
+          <div className="overflow-x-auto w-full">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
@@ -267,6 +268,7 @@ const SupplierInvoice = () => {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 overflow-x-auto mt-8 w-full">
@@ -297,6 +299,7 @@ const SupplierInvoice = () => {
             <span className="w-2 h-6 bg-indigo-500 rounded-full inline-block"></span>
             Suppliers List
           </h2>
+          <div className="overflow-x-auto w-full">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
@@ -336,6 +339,7 @@ const SupplierInvoice = () => {
               )}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 

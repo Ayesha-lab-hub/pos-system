@@ -138,6 +138,7 @@ const Customer = () => {
             {loading ? (
               <p className="text-center py-4">Loading customers...</p>
             ) : (
+              <div className="overflow-x-auto w-full">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-gray-100">
@@ -189,6 +190,7 @@ const Customer = () => {
                   )}
                 </tbody>
               </table>
+              </div>
             )}
           </div>
 
