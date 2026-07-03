@@ -26,6 +26,17 @@ html.dark {
 html.dark .bg-white { background-color: #1f2937 !important; }
 html.dark .bg-gray-50 { background-color: #111827 !important; }
 html.dark .bg-gray-100 { background-color: #374151 !important; }
+
+/* Override pastel backgrounds in dark mode */
+html.dark .bg-blue-50, html.dark .hover\:bg-blue-50:hover { background-color: #1e3a8a !important; }
+html.dark .bg-blue-100 { background-color: #1e40af !important; }
+html.dark .bg-green-50 { background-color: #064e3b !important; }
+html.dark .bg-green-100 { background-color: #065f46 !important; }
+html.dark .bg-red-50 { background-color: #450a0a !important; }
+html.dark .bg-red-100 { background-color: #7f1d1d !important; }
+html.dark .bg-yellow-50 { background-color: #422006 !important; }
+html.dark .bg-yellow-100 { background-color: #713f12 !important; }
+
 html.dark .text-gray-500,
 html.dark .text-gray-600,
 html.dark .text-gray-700,
@@ -34,6 +45,13 @@ html.dark .text-gray-900,
 html.dark td {
   color: #f3f4f6 !important;
 }
+
+/* Override colored text in dark mode */
+html.dark .text-blue-500, html.dark .text-blue-600, html.dark .text-blue-700 { color: #93c5fd !important; }
+html.dark .text-green-500, html.dark .text-green-600, html.dark .text-green-700 { color: #86efac !important; }
+html.dark .text-red-500, html.dark .text-red-600, html.dark .text-red-700 { color: #fca5a5 !important; }
+html.dark .text-yellow-500, html.dark .text-yellow-600, html.dark .text-yellow-700 { color: #fde047 !important; }
+
 html.dark th,
 html.dark td {
   border-bottom-color: #374151 !important;
@@ -44,11 +62,74 @@ html.dark .border-gray-300 {
   border-color: #4b5563 !important;
 }
 html.dark input,
-html.dark select {
+html.dark select,
+html.dark textarea {
   background-color: #374151 !important;
   color: #f3f4f6 !important;
   border-color: #4b5563 !important;
 }
+
+/* Custom Component Dark Mode Overrides */
+html.dark form label { color: #f3f4f6; }
+html.dark .hint { color: #9ca3af; }
+
+/* Dashboard & Modals */
+html.dark .stat-box {
+  background: linear-gradient(135deg, #1f2937, #374151);
+  border-color: #4b5563;
+}
+html.dark .stat-label { color: #d1d5db; }
+html.dark .modal-box { background: var(--bg-card); color: var(--text-main); }
+html.dark .totals-preview {
+  background: linear-gradient(120deg, #1f2937, #374151);
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+html.dark .receipt-box {
+  background: #1f2937;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+/* Khatta / Ledgers */
+html.dark .khatta-card {
+  background: var(--bg-card);
+  border-color: var(--border-card);
+}
+html.dark .khatta-summary { background: linear-gradient(120deg, #1f2937, #374151); }
+html.dark .khatta-summary:hover { background: linear-gradient(120deg, #374151, #4b5563); }
+html.dark .cname { color: #f3f4f6; }
+html.dark .cid { background: #4b5563; color: #d1d5db; }
+html.dark .khatta-toggle { color: #d1d5db; }
+html.dark .khatta-detail { border-top-color: #374151; }
+
+/* Status tags and titles */
+html.dark .pending-title { background: #7f1d1d; color: #fecaca; }
+html.dark .paid-title { background: #14532d; color: #bbf7d0; }
+html.dark .unpaid-row td { background: #450a0a !important; color: #fca5a5 !important; }
+html.dark .paid-row td { background: #064e3b !important; color: #d1d5db !important; }
+html.dark .section-total { border-top-color: #4b5563; }
+html.dark .pending-total { color: #fca5a5; }
+html.dark .paid-total { color: #86efac; }
+html.dark .grand-total-bar {
+  background: linear-gradient(120deg, #1f2937, #374151);
+  color: #f3f4f6;
+  border-color: #4b5563;
+}
+html.dark .khatta-header { background: linear-gradient(120deg, #1f2937, #374151); }
+html.dark .khatta-stat.total-box { background: linear-gradient(135deg, #1e3a8a, #1e40af); }
+html.dark .khatta-stat.paid-box { background: linear-gradient(135deg, #14532d, #166534); }
+html.dark .khatta-stat.pending-box { background: linear-gradient(135deg, #7f1d1d, #991b1b); }
+html.dark .ks-val { color: #f3f4f6; }
+html.dark .ks-label { color: #d1d5db; }
+html.dark .ftab {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+html.dark .pending-row-hl { background: #450a0a !important; color: #fca5a5 !important; }
+html.dark .selected-row { background: #064e3b !important; color: #bbf7d0 !important; }
+
 
 .app {
   max-width: 1050px;

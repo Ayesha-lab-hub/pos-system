@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import TopNav from "./components/TopNav";
+import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dasboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,21 +31,22 @@ function App() {
   }
 
   return (
-    <div className={`bg-gray-50 dark:bg-gray-900 dark:text-gray-100 min-h-screen ${!isLoginPage ? 'app' : ''}`}>
-      {!isLoginPage && (
-        <header className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-gray-800 dark:to-gray-950 text-white py-6 px-4 shadow-lg text-center w-full mb-8 rounded-b-xl border-b dark:border-gray-700">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-md">
-            🍊 Zameendara Fruit Company
-          </h1>
-          <p className="mt-2 text-sm md:text-base lg:text-lg font-medium text-orange-100 opacity-90 tracking-wide">
-            Shop # 12, Fruit Mandi, Chakwal
-          </p>
-        </header>
-      )}
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
+      {!isLoginPage && <Sidebar />}
 
-      {!isLoginPage && <TopNav />}
+      <div className={`flex-1 w-full overflow-y-auto ${!isLoginPage ? 'app' : ''}`}>
+        {!isLoginPage && (
+          <header className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-gray-800 dark:to-gray-950 text-white py-6 px-4 shadow-lg text-center w-full mb-8 rounded-b-xl border-b dark:border-gray-700">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-md">
+              🍊 Zameendara Fruit Company
+            </h1>
+            <p className="mt-2 text-sm md:text-base lg:text-lg font-medium text-orange-100 opacity-90 tracking-wide">
+              Shop # 12, Fruit Mandi, Chakwal
+            </p>
+          </header>
+        )}
 
-      <main>
+        <main>
         <Routes>
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -65,7 +66,8 @@ function App() {
           <Route path="/new-arrivals" element={<ProtectedRoute><NewArrivals /></ProtectedRoute>} />
           <Route path="/supplier-payments" element={<ProtectedRoute><SupplierPayments /></ProtectedRoute>} />
         </Routes>
-      </main>
+        </main>
+      </div>
 
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
