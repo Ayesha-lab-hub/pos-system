@@ -233,13 +233,13 @@ const Reports = () => {
       </div>
 
       {/* Timeframe Selector */}
-      <div className="flex flex-col md:flex-row bg-white rounded-lg p-4 shadow-sm mb-6 items-center gap-4">
-        <div className="flex bg-gray-100 rounded-lg p-1">
+      <div className="flex flex-col lg:flex-row bg-white rounded-lg p-4 shadow-sm mb-6 items-center justify-between gap-4 w-full">
+        <div className="flex flex-wrap justify-center bg-gray-100 rounded-lg p-1 w-full lg:w-auto">
           {['daily', 'weekly', 'monthly', 'custom'].map(tf => (
             <button
               key={tf}
               onClick={() => setTimeframe(tf)}
-              className={`px-6 py-2 rounded-md font-medium capitalize transition-all ${timeframe === tf ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`flex-1 lg:flex-none px-2 sm:px-4 py-2 text-sm lg:text-base rounded-md font-medium capitalize transition-all ${timeframe === tf ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
             >
               {tf}
             </button>
@@ -247,14 +247,14 @@ const Reports = () => {
         </div>
         
         {timeframe === 'custom' && (
-          <div className="flex items-center gap-4 ml-4">
-            <div className="flex flex-col">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto mt-2 lg:mt-0">
+            <div className="flex flex-col w-full sm:w-auto">
               <label className="text-xs text-gray-500 font-bold mb-1">Start Date</label>
-              <input type="date" className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" value={startDate} onChange={e => setStartDate(e.target.value)} />
+              <input type="date" className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" value={startDate} onChange={e => setStartDate(e.target.value)} />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full sm:w-auto">
               <label className="text-xs text-gray-500 font-bold mb-1">End Date</label>
-              <input type="date" className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" value={endDate} onChange={e => setEndDate(e.target.value)} />
+              <input type="date" className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" value={endDate} onChange={e => setEndDate(e.target.value)} />
             </div>
           </div>
         )}
