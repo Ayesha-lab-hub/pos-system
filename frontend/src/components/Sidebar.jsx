@@ -36,6 +36,8 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
     if (setIsMobileOpen) setIsMobileOpen(false);
   }, [location.pathname, setIsMobileOpen]);
 
+  const isEffectivelyCollapsed = collapsed && !isMobileOpen;
+
   return (
     <>
       {isMobileOpen && (
@@ -44,12 +46,12 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
           onClick={() => setIsMobileOpen(false)}
         />
       )}
-      <div className={`fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${collapsed ? 'w-64 md:w-20' : 'w-64'} shadow-md`}>
+      <div className={`fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${isEffectivelyCollapsed ? 'w-64 md:w-20' : 'w-64'} shadow-md`}>
       <div className="p-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-        {!collapsed && <span className="font-bold text-lg whitespace-nowrap overflow-hidden text-orange-500">ZFC POS</span>}
+        {!isEffectivelyCollapsed && <span className="font-bold text-lg whitespace-nowrap overflow-hidden text-orange-500">ZFC POS</span>}
         <button 
           onClick={() => setCollapsed(!collapsed)}
-          className={`p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 ${collapsed ? 'mx-auto' : ''}`}
+          className={`hidden md:block p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 ${isEffectivelyCollapsed ? 'mx-auto' : ''}`}
         >
           <FaBars size={20} />
         </button>
@@ -71,14 +73,14 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
               title={tab.label}
             >
               <span className="text-xl flex-shrink-0">{tab.icon}</span>
-              {!collapsed && <span className="font-medium">{tab.label}</span>}
+              {!isEffectivelyCollapsed && <span className="font-medium">{tab.label}</span>}
             </Link>
           );
         })}
       </nav>
 
       <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex flex-col gap-4">
-        {!collapsed && (
+        {!isEffectivelyCollapsed && (
           <div className="flex flex-col items-center gap-2">
             <span className="font-semibold text-gray-600 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded w-full text-center text-sm truncate shadow-inner border border-gray-200 dark:border-gray-600">
               👤 {user?.username} ({user?.role})
@@ -86,10 +88,10 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
           </div>
         )}
         
-        <div className={`flex ${collapsed ? 'flex-col' : 'justify-between'} items-center gap-3`}>
+        <div className={`flex ${isEffectivelyCollapsed ? 'flex-col' : 'justify-between'} items-center gap-3`}>
           <button
             onClick={toggleTheme}
-            className={`flex items-center justify-center text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors shadow-sm border border-gray-200 dark:border-gray-600 ${!collapsed ? 'w-10 h-10' : ''}`}
+            className={`flex items-center justify-center text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors shadow-sm border border-gray-200 dark:border-gray-600 ${!isEffectivelyCollapsed ? 'w-10 h-10' : ''}`}
             title="Toggle Theme"
           >
             {theme === 'dark' ? <FaSun size={18} className="text-yellow-500" /> : <FaMoon size={18} className="text-gray-600" />}
@@ -101,7 +103,7 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
             className="flex items-center justify-center text-white bg-red-500 hover:bg-red-600 p-2 rounded-lg shadow-sm font-bold transition-colors flex-1 w-full"
           >
             <FaSignOutAlt size={18} />
-            {!collapsed && <span className="ml-2">Logout</span>}
+            {!isEffectivelyCollapsed && <span className="ml-2">Logout</span>}
           </button>
         </div>
       </div>
