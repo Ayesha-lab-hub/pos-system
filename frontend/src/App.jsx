@@ -39,12 +39,12 @@ function App() {
 
       <div className={`flex-1 w-full overflow-y-auto ${!isLoginPage ? 'app' : ''}`}>
         {!isLoginPage && (
-          <header className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-gray-800 dark:to-gray-950 text-white py-6 px-4 shadow-lg flex items-center justify-between md:justify-center w-full mb-8 rounded-b-xl border-b dark:border-gray-700 relative">
+          <header className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-gray-800 dark:to-gray-950 text-white py-6 px-4 shadow-lg flex items-center w-full mb-8 rounded-b-xl border-b dark:border-gray-700">
             <button 
               onClick={() => setIsMobileOpen(true)}
-              className="md:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors absolute left-4"
+              className="md:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors mr-4 z-50 relative"
             >
-              <FaBars size={24} />
+              <FaBars size={28} />
             </button>
             <div className="text-center flex-1">
               <h1 className="text-2xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-md">
@@ -54,6 +54,8 @@ function App() {
                 Shop # 12, Fruit Mandi, Chakwal
               </p>
             </div>
+            {/* Empty div for flex balance if needed, or just let text-center work */}
+            <div className="md:hidden w-[44px]"></div>
           </header>
         )}
 
